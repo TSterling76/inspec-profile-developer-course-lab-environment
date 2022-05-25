@@ -48,4 +48,20 @@ Directory]"
   tag fix_id: "F-32887r567476_fix"
   tag cci: ["CCI-001090"]
   tag nist: ["SC-4"]
+
+  world = command('find / -type d \\( -perm -0002 -a ! -perm -1000 \\) -print 2&gt;/dev/null').stdout.split("\n")
+  #it  'should not have stick bit set' do
+  if world.empty?
+    describe 'List on target' do
+      it 'should be_empty' do
+        expect(world).to be_empty  #, "List of world writeable bit set: #{ world.join(', ')}"
+      end
+    end
+  else
+    world.each do |dir|
+      describe directory(dir) do
+        it { should be_sticky }
+      end
+    end
+  end
 end

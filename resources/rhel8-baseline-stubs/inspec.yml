@@ -11,3 +11,8 @@ summary: '"This Security Technical Implementation Guide is published as a tool
   to this document should be sent via email to the following address:
   disa.stig_spt@mail.mil."'
 version: 0.1.0
+
+inputs:
+  - name: ca_file
+    type: string
+    value: '/etc/sssd/pki/sssd_auth_ca_db.pem'

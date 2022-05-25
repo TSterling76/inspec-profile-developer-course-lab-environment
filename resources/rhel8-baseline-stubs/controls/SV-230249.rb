@@ -31,4 +31,8 @@ chown root /var/log"
   tag fix_id: "F-32893r567494_fix"
   tag cci: ["CCI-001314"]
   tag nist: ["SI-11 b"]
+
+  describe directory("/var/log") do
+    it { should be_owned_by "root" }
+  end
 end

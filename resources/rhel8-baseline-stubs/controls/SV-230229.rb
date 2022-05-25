@@ -69,4 +69,11 @@ cyber.mil and copy into the following file:
   tag fix_id: "F-32873r809269_fix"
   tag cci: ["CCI-000185"]
   tag nist: ["IA-5 (2) (b) (1)"]
+  
+  ca_file = input('ca_file')
+
+  describe x509_certificate(ca_file) do
+    its('issuer_cn') { should match "CN = DoD" }
+  end
 end
+
